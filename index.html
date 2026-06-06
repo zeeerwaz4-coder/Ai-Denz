@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>GPT Chatbot</title>
+  <style>
+    body { font-family: Arial; background:#111; color:white; }
+    #chat { height:80vh; overflow:auto; padding:10px; }
+    input { width:75%; padding:10px; }
+    button { padding:10px; }
+    .msg { margin:5px 0; }
+  </style>
+</head>
+<body>
+
+<h2>My GPT Chatbot</h2>
+
+<div id="chat"></div>
+
+<input id="input" placeholder="Type message...">
+<button onclick="send()">Send</button>
+
+<script>
+const API_KEY = "PASTE_YOUR_API_KEY_HERE";
+
+function add(msg, role){
+  let div = document.createElement("div");
+  div.className = "msg";
+  div.innerText = role + ": " + msg;
+  document.getElementById("chat").appendChild(div);
+}
+
+async function send(){
+  let input = document.getElementById("input");
+  let text = input.value;
+  add(text, "You");
+  input.value = "";
+
+  let response = await fetch("https://api.openai.com/v1/chat/completions", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": "Bearer " + API_KEY
+    },
+    body: JSON.stringify({
+      model: "gpt-4o-mini",
+      messages: [
+        { role: "system", content: "You are a helpful, positive AI assistant." },
+        { role: "user", content: text }
+      ]
+    })
+  });
+
+  let data = await response.json();
+  let reply = data.choices[0].message.content;
+
+  add(reply, "Bot");
+}
+</script>
+
+</body>
+  </html>
