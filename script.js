@@ -1,4 +1,4 @@
-const API_KEY = "paste-your-key-here";
+const OPENAI_API_KEY = env.OPENAI_API_KEY;const API_KEY = "paste-your-key-here";
 let data = await response.json();
 console.log(data);
 if (!data.choices) {
