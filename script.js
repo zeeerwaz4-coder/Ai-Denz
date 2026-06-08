@@ -1,10 +1,6 @@
-const OPENAI_API_KEY = env.OPENAI_API_KEY;const API_KEY = "paste-your-key-here";
-let data = await response.json();
+const API_KEY = env.OPENAI_API_KEY;
+headers: {
+  "Authorization": `Bearer ${env.OPENAI_API_KEY}`,
+  "Content-Type": "application/json"
+}let data = await response.json();
 console.log(data);
-if (!data.choices) {
-    add(JSON.stringify(data), "Bot");
-    return;
-}
-
-let reply = data.choices[0].message.content;
-add(reply, "Bot");
