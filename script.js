@@ -1,12 +1,13 @@
-const WORKER_URL = https://ai-denz7.zeeerwaz4-coder.workers.dev
-
+const WORKER_URL = "https://ai-denz7.zeeerwaz4-coder.workers.dev";
 
 function add(msg, sender) {
   let div = document.createElement("div");
   div.className = "msg " + sender;
   div.innerText = sender === "you" ? "You: " + msg : "Bot: " + msg;
+
   document.getElementById("chat").appendChild(div);
-  document.getElementById("chat").scrollTop = document.getElementById("chat").scrollHeight;
+  document.getElementById("chat").scrollTop =
+    document.getElementById("chat").scrollHeight;
 }
 
 async function send() {
@@ -23,8 +24,16 @@ async function send() {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ message: text })
     });
+
     const data = await res.json();
-    add(data.reply, "bot");
+
+    const reply =
+      data.reply ||
+      data?.choices?.[0]?.message?.content ||
+      "No response from server";
+
+    add(reply, "bot");
+
   } catch (err) {
     add("Error: Could not connect", "bot");
   }
