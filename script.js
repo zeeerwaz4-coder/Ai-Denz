@@ -1,4 +1,4 @@
-const WORKER_URL = "https://ai-denz7.zeeerwaz4-coder.workers.dev";
+const WORKER_URL = "https://ai-dens.zeeerwaz4-coder.workers.dev";
 
 function add(msg, sender) {
   let div = document.createElement("div");
