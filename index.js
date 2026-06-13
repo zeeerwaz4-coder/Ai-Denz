@@ -21,12 +21,14 @@ export default {
         })
       });
 
-      const data = await response.json();
+ const data = await response.json();
 
-      return new Response(
-        JSON.stringify({
-          reply: data.choices[0].message.content
-        }),
+if (!response.ok) {
+  return new Response(
+    JSON.stringify(data),
+    { status: response.status }
+  );
+}
         {
           headers: {
             "Content-Type": "application/json",
