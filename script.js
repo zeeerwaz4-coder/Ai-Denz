@@ -1,5 +1,5 @@
 
-const WORKER_URL = https://"dens9.zeeerwaz4.workers.dev/chat";
+const WORKER_URL = https://"ai-dens9.zeeerwaz4.workers.dev/chat";
 
 function add(msg, sender) {
   let div = document.createElement("div");
