@@ -1,5 +1,13 @@
 export default {
-  async fetch(request, env) {
+  async fetch(request, env) {if (request.method === "OPTIONS") {
+  return new Response(null, {
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Methods": "POST, OPTIONS",
+      "Access-Control-Allow-Headers": "Content-Type"
+    }
+  });
+  }
     // Allow frontend to call API
     const url = new URL(request.url);
 
