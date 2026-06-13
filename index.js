@@ -36,6 +36,6 @@ export default {
       );
     }
 
-    return new Response("Worker is running");
+    return new Response("Worker OK");
   }
 };
