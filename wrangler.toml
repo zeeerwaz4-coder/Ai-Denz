@@ -1,4 +1,4 @@
-name = "talkiai"
+name = "ai-denz1"
 main = "index.js"
 compatibility_date = "2026-06-13"
 assets = { directory = ".", binding = "ASSETS" }
