@@ -28,17 +28,51 @@ export default {
     // =========================
     // CHAT ENDPOINT
     // =========================
+    export default {
+  async fetch(request, env) {
+    const url = new URL(request.url);
+
     if (url.pathname === "/chat" && request.method === "POST") {
       try {
-        const body = await request.json();
-        const message = body.message;
+        const { message } = await request.json();
 
-        if (!message) {
-          return new Response(
-            JSON.stringify({ error: "No message provided" }),
-            { status: 400, headers: corsHeaders }
-          );
-        }
+        const openaiRes = await fetch("https://api.openai.com/v1/chat/completions", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${env.OPENAI_API_KEY}`
+          },
+          body: JSON.stringify({
+            model: "gpt-4o-mini",
+            messages: [{ role: "user", content: message }]
+          })
+        });
+
+        const data = await openaiRes.json();
+
+        return new Response(
+          JSON.stringify({
+            reply: data.choices?.[0]?.message?.content || "No AI response"
+          }),
+          {
+            headers: {
+              "Content-Type": "application/json",
+              "Access-Control-Allow-Origin": "*"
+            }
+          }
+        );
+
+      } catch (err) {
+        return new Response(
+          JSON.stringify({ error: err.message }),
+          { status: 500 }
+        );
+      }
+    }
+
+    return new Response("Worker is running");
+  }
+};
 
         // =========================
         // OPENAI REQUEST
