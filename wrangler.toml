@@ -1,4 +1,7 @@
-name = "talkiai"
+name = "ai-denzy"
 main = "index.js"
 compatibility_date = "2026-06-13"
 assets = { directory = ".", binding = "ASSETS" }
+
+[env.production]
+vars = { ENVIRONMENT = "production" }
