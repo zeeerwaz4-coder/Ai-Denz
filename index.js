@@ -27,7 +27,19 @@ export default {
           }),
         });
 
-        const data = await openaiRes.json();
+        if (!openaiRes.ok) {
+  const errorText = await openaiRes.text();
+  return new Response(
+    JSON.stringify({
+      error: "OpenAI request failed",
+      status: openaiRes.status,
+      details: errorText
+    }),
+    { status: 500, headers: { "Content-Type": "application/json" } }
+  );
+}
+
+const data = await openaiRes.json();
 
         return new Response(
           JSON.stringify({
