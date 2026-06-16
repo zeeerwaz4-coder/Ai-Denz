@@ -3,7 +3,7 @@ export default {
     const url = new URL(request.url);
 
     // simple test
-    if (url.pathname === "/") {
+    if (url.pathname === "/") {console.log("KEY EXISTS:", !!env.OPENAI_API_KEY);
       return new Response("Worker is running", { status: 200 });
     }
 
@@ -16,7 +16,7 @@ export default {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            console.log("KEY EXISTS:", !!env.OPENAI_API_KEY);
+            
             "Authorization": `Bearer ${env.OPENAI_API_KEY}`,
           },
           body: JSON.stringify({
