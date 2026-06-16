@@ -16,6 +16,7 @@ export default {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
+            console.log("KEY EXISTS:", !!env.OPENAI_API_KEY);
             "Authorization": `Bearer ${env.OPENAI_API_KEY}`,
           },
           body: JSON.stringify({
