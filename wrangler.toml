@@ -1,9 +1,5 @@
 name = "talkiai"
 main = "index.js"
 compatibility_date = "2026-06-13"
+
 assets = { directory = ".", binding = "ASSETS" }
-
-vars = { OPENAI_API_KEY = "" }
-
-[env.production]
-vars = { ENVIRONMENT = "production", OPENAI_API_KEY = "" }
