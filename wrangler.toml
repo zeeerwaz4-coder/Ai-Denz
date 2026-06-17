@@ -2,4 +2,5 @@ name = "talkiai"
 main = "index.js"
 compatibility_date = "2026-06-13"
 
-assets = { directory = ".", binding = "OPENAI_API_KEY" }
+assets = { directory = ".", binding = "ASSETS" }
+secrets ={ directory = ".", binding = "OPENAI_API_KEY" } 
