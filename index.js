@@ -20,7 +20,7 @@ export default {
             "Authorization": `Bearer ${env.OPENAI_API_KEY}`,
           },
           body: JSON.stringify({
-            model: "gpt-4o-mini",
+            model: "gpt-5.5",
             messages: [
               { role: "system", content: "You are a helpful assistant." },
               { role: "user", content: message }
